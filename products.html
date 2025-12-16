@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products - Matomo POC</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        .product-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        button {
+            background: #667eea;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+        }
+        button:hover {
+            background: #5568d3;
+        }
+        .back-button {
+            background: #6c757d;
+            margin-top: 30px;
+        }
+    </style>
+    
+    <!-- PASTE YOUR MATOMO TRACKING CODE HERE -->
+    <!-- Matomo -->
+    <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="https://himani-poc.matomo.cloud/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src='https://cdn.matomo.cloud/himani-poc.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+    <!-- End Matomo Code -->
+    
+</head>
+<body>
+    <h1>Our Products</h1>
+    
+    <div class="product-grid">
+        <div class="product-card">
+            <h2>Analytics Pro</h2>
+            <p><strong>$99/month</strong></p>
+            <p>Complete analytics suite with advanced features for growing businesses.</p>
+            <button onclick="trackProductEvent('Analytics Pro', 'View Details')">View Details</button>
+            <button onclick="trackProductEvent('Analytics Pro', 'Add to Cart')">Add to Cart</button>
+        </div>
+        
+        <div class="product-card">
+            <h2>Enterprise Suite</h2>
+            <p><strong>$299/month</strong></p>
+            <p>Full-featured solution for large organizations with custom requirements.</p>
+            <button onclick="trackProductEvent('Enterprise Suite', 'View Details')">View Details</button>
+            <button onclick="trackProductEvent('Enterprise Suite', 'Add to Cart')">Add to Cart</button>
+        </div>
+        
+        <div class="product-card">
+            <h2>Starter Pack</h2>
+            <p><strong>$29/month</strong></p>
+            <p>Perfect for small businesses just getting started with analytics.</p>
+            <button onclick="trackProductEvent('Starter Pack', 'View Details')">View Details</button>
+            <button onclick="trackProductEvent('Starter Pack', 'Add to Cart')">Add to Cart</button>
+        </div>
+    </div>
+    
+    <center>
+        <button class="back-button" onclick="window.location.href='index.html'">← Back to Home</button>
+    </center>
+    
+    <script>
+        function trackProductEvent(productName, action) {
+            if (typeof _paq !== 'undefined') {
+                _paq.push(['trackEvent', 'Product', action, productName]);
+            }
+            alert('✓ Tracked: ' + action + ' - ' + productName);
+        }
+    </script>
+</body>
+</html>
